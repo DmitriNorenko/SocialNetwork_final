@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using SocialNetwork_final.Contract.Model.Request;
+using SocialNetwork_final.Contract.Validator;
 using SocialNetwork_final.DB.Model;
 using SocialNetwork_final.DB.Repository;
 using SocialNetwork_final.Models;
@@ -19,20 +21,18 @@ namespace SocialNetwork_final.Controllers
 
         public IActionResult Index()
         {
-            User user = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = "Test",
-                Age = 23,
-                Email = "Test@gmail.com"
-            };
-            _userRepository.AddUser(user);
             return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+        [HttpPost]
+        [Route("AddUser")]
+        public IActionResult AddUser([FromBody] UserRequest user)
+        {
+            return StatusCode(200,user);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

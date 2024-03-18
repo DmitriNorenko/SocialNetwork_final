@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using SocialNetwork_final.Contract.Model.Request;
+using SocialNetwork_final.Contract.Validator;
 using SocialNetwork_final.Controllers;
 using SocialNetwork_final.DB;
 using SocialNetwork_final.DB.Repository;
@@ -17,6 +20,8 @@ namespace SocialNetwork_final
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>());
+
             services.AddSingleton<IUserRepository, UserRepository>();
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SocialNetworkContext>(option => option.UseSqlServer(connection),ServiceLifetime.Singleton);
