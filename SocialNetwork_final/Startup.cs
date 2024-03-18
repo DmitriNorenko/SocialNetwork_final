@@ -1,12 +1,26 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using SocialNetwork_final.Controllers;
+using SocialNetwork_final.DB;
+using SocialNetwork_final.DB.Repository;
 
 namespace SocialNetwork_final
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; } = 
+            new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.Development.json")
+            .Build();
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IUserRepository, UserRepository>();
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<SocialNetworkContext>(option => option.UseSqlServer(connection),ServiceLifetime.Singleton);
+
             services.AddControllersWithViews();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
