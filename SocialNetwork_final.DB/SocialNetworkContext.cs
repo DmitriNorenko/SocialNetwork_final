@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SocialNetwork_final.DB.Model;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork_final.DB
 {
-    public class SocialNetworkContext : DbContext
+    public class SocialNetworkContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
         public SocialNetworkContext(DbContextOptions<SocialNetworkContext> options) : base(options) 
         {
             Database.EnsureCreated();

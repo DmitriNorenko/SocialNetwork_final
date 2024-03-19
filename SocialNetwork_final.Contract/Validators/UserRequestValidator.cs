@@ -14,7 +14,9 @@ namespace SocialNetwork_final.Contract.Validator
     {
         public UserRequestValidator() 
         {
-            RuleFor(x => x.Name).NotEmpty().NotNull();
+           RuleFor(x => x.Name).NotEmpty().NotNull();
+            RuleFor(x => x.Age).NotEmpty().InclusiveBetween(0, 99);
+            RuleFor(x => x.Email).NotEmpty();
         }
     }
 }

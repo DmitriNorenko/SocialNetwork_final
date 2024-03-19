@@ -1,8 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    #forms {
+        text-align : center;
+    }
+    #divWithForms{
+        text-align:right;
+    }
+</style>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<body>
+    <div>
+        <p>Здесь будет картинка</p>
+    </div>
+<div >
+  <form id="forms" method="post">
+      <h3>Вход в приложение</h3>
+      <p>Логин</p>
+      <input type="text" />
+      <p>Пароль</p>
+      <input type="text" />
+      <p>Запомнить?</p>
+      <input type="checkbox" />
+      <br />
+      <button type="submit">Войти</button>
+  </form>
+  <form id="forms" method="post">
+      <h3>Регистрация</h3>
+      <p>Имя</p>
+      <input type="text" />
+      <p>Фамилия</p>
+      <input type="text" />
+      <br />
+      <button type="submit">Регистрация</button>
+  </form>
+</body>
 </div>

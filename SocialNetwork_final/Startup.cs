@@ -1,11 +1,13 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using SocialNetwork_final.Contract.Model;
 using SocialNetwork_final.Contract.Validator;
 using SocialNetwork_final.Controllers;
 using SocialNetwork_final.DB;
+using SocialNetwork_final.DB.Model;
 using SocialNetwork_final.DB.Repository;
 using System.Reflection;
 
@@ -27,6 +29,14 @@ namespace SocialNetwork_final
             services.AddSingleton<IUserRepository, UserRepository>();
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SocialNetworkContext>(option => option.UseSqlServer(connection), ServiceLifetime.Singleton);
+            services.AddIdentity<User,IdentityRole>(opts =>
+            {
+                opts.Password.RequiredLength = 5;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<SocialNetworkContext>();
 
             services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>());
 
@@ -39,6 +49,9 @@ namespace SocialNetwork_final
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

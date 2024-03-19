@@ -15,7 +15,7 @@ namespace SocialNetwork_final.Controllers
         private readonly IUserRepository _userRepository;
         private IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger,IUserRepository userRepository,IMapper mapper)
+        public HomeController(ILogger<HomeController> logger, IUserRepository userRepository, IMapper mapper)
         {
             _logger = logger;
             _userRepository = userRepository;
@@ -29,15 +29,14 @@ namespace SocialNetwork_final.Controllers
 
         public IActionResult Privacy()
         {
+
             return View();
         }
         [HttpPost]
         [Route("AddUser")]
-        public async Task<IActionResult> AddUser([FromBody] UserRequest user)
+        public IActionResult AddUser([FromBody] UserRequest user)
         {
-            var newUser = _mapper.Map<UserRequest,User>(user);
-            _userRepository.AddUser(newUser);
-            return  StatusCode(200,$"Новый пользователь {newUser.Name} добавлен!");
+            return StatusCode(200, $"Новый пользователь добавлен!");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
