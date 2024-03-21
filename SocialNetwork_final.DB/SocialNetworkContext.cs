@@ -13,6 +13,7 @@ namespace SocialNetwork_final.DB
     {
         public SocialNetworkContext(DbContextOptions<SocialNetworkContext> options) : base(options) 
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

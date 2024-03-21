@@ -12,14 +12,10 @@ namespace SocialNetwork_final.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IUserRepository _userRepository;
-        private IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger, IUserRepository userRepository, IMapper mapper)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _userRepository = userRepository;
-            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -31,12 +27,6 @@ namespace SocialNetwork_final.Controllers
         {
 
             return View();
-        }
-        [HttpPost]
-        [Route("AddUser")]
-        public IActionResult AddUser([FromBody] UserRequest user)
-        {
-            return StatusCode(200, $"Новый пользователь добавлен!");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

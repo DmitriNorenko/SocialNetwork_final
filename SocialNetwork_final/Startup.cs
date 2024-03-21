@@ -26,7 +26,6 @@ namespace SocialNetwork_final
             var assembly = Assembly.GetAssembly(typeof(MapperProfile));
             services.AddAutoMapper(assembly);
 
-            services.AddSingleton<IUserRepository, UserRepository>();
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SocialNetworkContext>(option => option.UseSqlServer(connection), ServiceLifetime.Singleton);
             services.AddIdentity<User,IdentityRole>(opts =>
@@ -46,6 +45,7 @@ namespace SocialNetwork_final
         {
             if (env.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
