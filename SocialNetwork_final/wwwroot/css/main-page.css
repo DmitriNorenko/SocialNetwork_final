@@ -4,13 +4,15 @@
     padding: 25px;
     position:absolute;
     right:0;
+    height:max-content;
 }
 
 .side {
     display: inline-flex;
-    -ms-flex: 60%; 
-    flex: 60%;
+    -ms-flex: 40%; 
+    flex: 40%;
     padding: 20px;
+    height:600px;
 }
 
 .row {
@@ -40,16 +42,73 @@
     background-color: white;
 }
 .main-img{
-    width:70%;
-    height:70%;
-    
+    width:60%;
+    height:90%;
+    z-index:1;
+    position: relative;
+    top:20px;
+    left:300px;
 }
 #hello{
-    color: darkgoldenrod;
+    padding-top:40px;
+    color:olivedrab;
+    text-align:center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.frmLogin {
+    background-color: white;
+    margin: 5%;
+    padding: 10px 40px 20px 40px;
+    position: absolute;
+    right: 50px;
+    border-radius: 5px;
+}
+
+.frmReg {
+    background-color: white;
+    margin: 5%;
+    padding: 10px 40px 20px 40px;
+    position: absolute;
+    top:300px;
+    right:50px;
+    border-radius:5px;
+}
+
+.frmReg2 {
+    background-color: white;
+    margin: 5%;
+    padding: 10px 40px 20px 40px;
+    position: absolute;
+    bottom:100px;
+    right:30%;
+    border-radius: 5px;
+}
+
+#buttonFormLogin {
+    border: 0;
+    background-color: deepskyblue;
+    width: 189px;
+    border-radius: 5px;
+}
+
+#buttonFormRegister {
+    border: 0;
+    background-color: limegreen;
+    width: 189px;
+    border-radius: 5px;
+    margin-top:15px;
+}
+
+.frmLogin h2{
     text-align:center;
 }
 
-#frm {
-    text-align: center;
-    width: max-content;
+#searchInput{
+    position:absolute;
+    right: 50px;
+}
+
+#buttonReg{
+    text-align:center;
 }

@@ -7,17 +7,17 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
 
-<form method="post" asp-controller="AccountManager" asp-action="Login">
+<form class="frmLogin" method="post" asp-controller="AccountManager" asp-action="Login">
     <h2>Вход</h2>
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
+        <input asp-for="Email" placeholder="ivan@gmail.com"/>
         <span asp-validation-for="Email"></span>
     </div>
     <div>
         <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
+        <input asp-for="Password" placeholder="Grlk234!"/>
         <span asp-validation-for="Password"></span>
     </div>
     <div>
@@ -27,6 +27,6 @@
     </div>
 
     <div>
-        <input type="submit" value="Вход" />
+        <input id="buttonFormLogin" type="submit" value="Вход" />
     </div>
 </form>
