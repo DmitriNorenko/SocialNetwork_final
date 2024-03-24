@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using SocialNetwork_final.DB.Model;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="nav-link text-dark" id="buttonLogout" asp-controller="AccountManager" asp-action="Logout">Выход</a>
+}

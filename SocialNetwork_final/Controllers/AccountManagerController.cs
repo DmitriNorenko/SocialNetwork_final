@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork_final.DB.Model;
 using SocialNetwork_final.Models;
+using System;
 
 namespace SocialNetwork_final.Controllers
 {
@@ -23,7 +25,7 @@ namespace SocialNetwork_final.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View("Home");
+            return View("Views/Home/Index.cshtml");
         }
 
         [Route("Login")]
@@ -57,11 +59,10 @@ namespace SocialNetwork_final.Controllers
         }
 
         [Route("Logout")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }
