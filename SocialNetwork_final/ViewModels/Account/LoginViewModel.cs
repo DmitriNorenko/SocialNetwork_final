@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SocialNetwork_final.Models
+namespace SocialNetwork_final.ViewModels.Account
 {
     public class LoginViewModel
     {
@@ -21,6 +21,6 @@ namespace SocialNetwork_final.Models
 
         [Required]
         [Display(Name = "UrlReturn")]
-        public string ReturnUrl { get; set; } = "/Home/Privacy";
+        public string ReturnUrl { get; set; } = "/MyPage";
     }
 }

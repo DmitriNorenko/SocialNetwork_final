@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork_final.DB.Model;
-using SocialNetwork_final.Models;
+using SocialNetwork_final.ViewModels.Account;
 using System;
 
 namespace SocialNetwork_final.Controllers
@@ -47,7 +47,7 @@ namespace SocialNetwork_final.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Privacy", "Home");
+                        return RedirectToAction("MyPage", "AccountManager");
                     }
                 }
                 else
@@ -56,6 +56,15 @@ namespace SocialNetwork_final.Controllers
                 }
             }
             return View("Views/Home/Index.cshtml");
+        }
+       
+        [Route("MyPage")]
+        [HttpGet]
+        public IActionResult MyPage()
+        {
+            var user = _userManager.FindByEmailAsync(_signInManager.Context.User.Identity.Name).Result;
+            UserViewModel ViewUser = new UserViewModel(user);
+            return View(ViewUser); 
         }
 
         [Route("Logout")]

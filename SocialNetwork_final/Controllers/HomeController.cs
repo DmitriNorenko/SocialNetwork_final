@@ -27,7 +27,7 @@ namespace SocialNetwork_final.Controllers
         {
             if (_signInManager.Context.User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Privacy", "Home");
+                return RedirectToAction("MyPage", "AccountManager");
             }
             return View();
         }

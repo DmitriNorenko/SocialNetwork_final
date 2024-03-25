@@ -1,4 +1,5 @@
-﻿@model SocialNetwork_final.Models.RegisterViewModel
+﻿@using SocialNetwork_final.ViewModels
+@model SocialNetwork_final.ViewModels.Account.RegisterViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -28,7 +29,7 @@
         <span asp-validation-for="Date" class="text-danger"></span>
 
         <select id="ddlMonth" asp-for="Month" class="form-control date_control selectValue"
-                asp-items="Html.GetEnumSelectList<SocialNetwork_final.Models.Months>()" onchange="PopulateDays()">
+                asp-items="Html.GetEnumSelectList<Months>()" onchange="PopulateDays()">
             <option value="">Month</option>
         </select>
         <span asp-validation-for="Month" class="text-danger"></span>

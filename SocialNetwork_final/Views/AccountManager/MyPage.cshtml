@@ -1,0 +1,21 @@
+﻿@model SocialNetwork_final.ViewModels.Account.UserViewModel;
+@{
+    ViewData["Title"] = "Моя страница";
+}
+<div class="side">
+    <div>
+        <img src="@Model.user.Image" />
+        <div>
+            <button>Редактировать профиль</button>
+        </div>
+    </div>
+    <div>
+        <h3>@Model.user.GetFullName()</h3><hr />
+        <p>Статус: @Model.user.Status</p>
+        <p>Дата рождения: @Model.user.BirthDate.Date</p>
+        <p>О себе: @Model.user.About</p>
+        <p>Email: @Model.user.Email </p><hr /><hr />
+         
+        <p>Список друзей</p><hr />
+    </div>
+</div>

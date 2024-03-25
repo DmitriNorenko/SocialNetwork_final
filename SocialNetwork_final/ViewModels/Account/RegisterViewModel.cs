@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SocialNetwork_final.Models
+namespace SocialNetwork_final.ViewModels.Account
 {
     public class RegisterViewModel
     {
@@ -9,11 +9,11 @@ namespace SocialNetwork_final.Models
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name ="Фамилия")]
+        [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name ="Email")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -22,27 +22,27 @@ namespace SocialNetwork_final.Models
 
         [Required]
         [Display(Name = "День")]
-        public int Date {  get; set; }
+        public int Date { get; set; }
 
         [Required]
-        [Display(Name ="Месяц")]
+        [Display(Name = "Месяц")]
         public int Month { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
-        [StringLength(100, ErrorMessage ="Поле {0} должно иметь минимум {2} " +
-            "и максимум {1} символов",MinimumLength = 5)]
+        [StringLength(100, ErrorMessage = "Поле {0} должно иметь минимум {2} " +
+            "и максимум {1} символов", MinimumLength = 5)]
         public string PasswordReg { get; set; }
 
         [Required]
-        [Compare("PasswordReg",ErrorMessage ="Пароли не совпадают")]
+        [Compare("PasswordReg", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердите пароль")]
         public string PasswordConfirm { get; set; }
 
         [Required]
         [Display(Name = "Никнейм")]
-        public string Login {  get; set; }
+        public string Login { get; set; }
     }
 }

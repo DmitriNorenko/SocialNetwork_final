@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SocialNetwork_final.Models
+namespace SocialNetwork_final.ViewModels
 {
     public enum Months
     {
@@ -29,5 +29,4 @@ namespace SocialNetwork_final.Models
         [Display(Name = "Декабрь")]
         December = 12,
     }
-
 }

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork_final.DB.Model;
-using SocialNetwork_final.Models;
+using SocialNetwork_final.ViewModels.Account;
 
 namespace SocialNetwork_final.Controllers
 {
@@ -37,7 +37,7 @@ namespace SocialNetwork_final.Controllers
                 var result = await _userManager.CreateAsync(user, model.PasswordReg);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
+                   // await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
