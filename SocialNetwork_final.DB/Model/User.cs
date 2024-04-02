@@ -18,9 +18,8 @@ namespace SocialNetwork_final.DB.Model
         public string About { get; set; }
         public string GetFullName()
         {
-            return FirstName + " " + MiddleName + " " + LastName;
+            return LastName + " " + FirstName + " " + MiddleName;
         }
-
         public User()
         {
             Image = "https://via.placeholder.com/500";

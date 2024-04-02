@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork_final.DB.Model;
+using SocialNetwork_final.Models;
 using SocialNetwork_final.ViewModels.Account;
 using System;
 
@@ -57,18 +59,52 @@ namespace SocialNetwork_final.Controllers
             }
             return View("Views/Home/Index.cshtml");
         }
-       
+
         [Route("MyPage")]
         [HttpGet]
         public IActionResult MyPage()
         {
             var user = _userManager.FindByEmailAsync(_signInManager.Context.User.Identity.Name).Result;
             UserViewModel ViewUser = new UserViewModel(user);
-            return View(ViewUser); 
+            return View(ViewUser);
+        }
+
+        [Route("PageUpdate")]
+        [HttpGet]
+        public IActionResult PageUpdate()
+        {
+            var user = User;
+            var result = _userManager.GetUserAsync(user);
+            return View(result.Result);
+        }
+
+        [Route("PageUpdate")]
+        [HttpPost]
+        public async Task<IActionResult> PageUpdate(UserEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(model.Id);
+                user.Convert(model);
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("MyPage", "AccountManager");
+                }
+                else
+                {
+                    return RedirectToAction("Logout", "AccountManager");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Некорректные данные");
+                return View("Logout", model);
+            }
         }
 
         [Route("Logout")]
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             _signInManager.SignOutAsync();

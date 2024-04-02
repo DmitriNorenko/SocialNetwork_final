@@ -1,0 +1,47 @@
+﻿@model SocialNetwork_final.DB.Model.User;
+
+@{
+    ViewData["Title"] = "Update";
+}
+<div>
+    <form class="frmUpdate" method="post" asp-controller="AccountManager" asp-action="PageUpdate">
+        <h2>Редактирование пользователя</h2>
+        <label asp-for="Id"></label><br />
+        <input asp-for="Id" /><br />
+        <span asp-validation-for="Id"></span>
+
+        <label asp-for="FirstName"></label><br />
+        <input asp-for="FirstName" /><br />
+        <span asp-validation-for="FirstName"></span>
+
+        <label asp-for="MiddleName"></label><br />
+        <input asp-for="MiddleName" placeholder="Отчество" /><br />
+        <span asp-validation-for="MiddleName"></span>
+
+        <label asp-for="LastName"></label><br />
+        <input asp-for="LastName" /><br />
+        <span asp-validation-for="LastName"></span>
+
+        <label asp-for="BirthDate"></label><br />
+        <input asp-for="BirthDate" /><br />
+        <span asp-validation-for="BirthDate"></span>
+
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" /><br />
+        <span asp-validation-for="Email"></span>
+
+        <label asp-for="Image"></label><br />
+        <input asp-for="Image" /><br />
+        <span asp-validation-for="Image"></span>
+
+        <label asp-for="Status"></label><br />
+        <input asp-for="Status" /><br />
+        <span asp-validation-for="Status"></span>
+
+        <label asp-for="About"></label><br />
+        <input asp-for="About" /><br />
+        <span asp-validation-for="About"></span>
+
+        <input type="submit" value="Сохранить"/>
+    </form>
+</div>

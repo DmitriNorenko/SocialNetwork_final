@@ -23,6 +23,7 @@ namespace SocialNetwork_final
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             var assembly = Assembly.GetAssembly(typeof(MapperProfile));
             services.AddAutoMapper(assembly);
 
@@ -39,6 +40,8 @@ namespace SocialNetwork_final
 
             services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>());
 
+            
+
             services.AddControllersWithViews();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,9 +53,9 @@ namespace SocialNetwork_final
                 app.UseHsts();
             }
 
-            app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseAuthentication();
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

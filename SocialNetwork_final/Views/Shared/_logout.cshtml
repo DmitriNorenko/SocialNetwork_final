@@ -5,5 +5,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <a class="nav-link text-dark" id="buttonLogout" asp-controller="AccountManager" asp-action="Logout">Выход</a>
+    <form method="post" asp-controller="AccountManager" asp-action="Logout">
+        <input id="buttonLogout" type="submit" value="Выход" />
+    </form>
 }

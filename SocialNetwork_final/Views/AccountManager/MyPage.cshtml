@@ -3,10 +3,12 @@
     ViewData["Title"] = "Моя страница";
 }
 <div class="side">
-    <div>
-        <img src="@Model.user.Image" />
+    <div class="MaxContent">
+        <img class="MyPageImg" src="@Model.user.Image" />
         <div>
-            <button>Редактировать профиль</button>
+            <form method="get" asp-controller="AccountManager" asp-action="PageUpdate">
+                <input id="buttonForUpdate" type="submit" value="Редактировать профиль" />
+            </form>
         </div>
     </div>
     <div>

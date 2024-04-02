@@ -49,6 +49,13 @@
     top:20px;
     left:300px;
 }
+
+.MyPageImg {
+    width: 100%;
+    height: 100%;
+    padding:15px;
+}
+
 #hello{
     padding-top:40px;
     color:olivedrab;
@@ -82,6 +89,26 @@
     position: absolute;
     bottom:100px;
     right:30%;
+    border-radius: 5px;
+}
+
+.frmUpdate {
+    width:max-content;
+    background-color: white;
+    margin: 5%;
+    padding: 10px 40px 20px 40px;
+    border-radius: 5px;
+}
+
+.frmUpdate input{
+    width: 400px;
+    margin:10px;
+}
+
+#buttonForUpdate {
+    border: 0;
+    background-color: deepskyblue;
+    width: 372px;
     border-radius: 5px;
 }
 
@@ -130,4 +157,9 @@
 }
 #inputStyle{
     width:215px;
+}
+
+.MaxContent{
+    width:400px;
+    text-align:center;
 }
