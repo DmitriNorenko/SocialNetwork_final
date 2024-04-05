@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialNetwork_final.DB.Model;
 using SocialNetwork_final.Models;
 using SocialNetwork_final.ViewModels.Account;
+using SocialNetwork_final.ViewModels;
 using System;
 
 namespace SocialNetwork_final.Controllers
@@ -101,6 +102,17 @@ namespace SocialNetwork_final.Controllers
                 ModelState.AddModelError("", "Некорректные данные");
                 return View("Logout", model);
             }
+        }
+
+        [Route("UserList")]
+        [HttpPost]
+        public IActionResult UserList(string search)
+        {
+            var model = new SearchViewModel
+            {
+                UserList = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList()
+            };
+            return View("UserList",model);
         }
 
         [Route("Logout")]

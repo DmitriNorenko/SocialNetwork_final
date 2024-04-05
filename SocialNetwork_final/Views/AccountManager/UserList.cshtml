@@ -1,0 +1,17 @@
+﻿@model SocialNetwork_final.ViewModels.Account.SearchViewModel;
+
+<div class="background-white">
+    @if(Model.UserList.Count == 0)
+    {
+        <p>Поиск не дал результатов</p>
+    }
+    else
+    {
+        @foreach (var user in Model.UserList)
+        {
+            <div>
+                <label>@user.GetFullName()</label>
+            </div>
+        }
+    }
+</div>

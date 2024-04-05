@@ -40,8 +40,6 @@ namespace SocialNetwork_final
 
             services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>());
 
-            
-
             services.AddControllersWithViews();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,13 +51,13 @@ namespace SocialNetwork_final
                 app.UseHsts();
             }
 
-            app.UseAuthorization();
-            app.UseAuthentication();
-            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoint =>
             {
