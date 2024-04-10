@@ -1,6 +1,6 @@
 ﻿@model SocialNetwork_final.ViewModels.Account.SearchViewModel;
 
-<div class="background-white">
+<div>
     @if(Model.UserList.Count == 0)
     {
         <p>Поиск не дал результатов</p>
@@ -9,8 +9,12 @@
     {
         @foreach (var user in Model.UserList)
         {
-            <div>
-                <label>@user.GetFullName()</label>
+            <div class="UserList">
+                <form class="formFriend" asp-controller="AccountManager" asp-action="AddFriend" method="post">
+                    <label>@user.GetFullName()</label>
+                    <input style="display:none" type="text" value="@user.Email" name="friendEmail" />
+                    <button class="buttonFriend" type="submit">Добавить в друзья</button>
+                </form>
             </div>
         }
     }

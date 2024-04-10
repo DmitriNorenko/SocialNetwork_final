@@ -162,4 +162,55 @@
 .MaxContent{
     width:400px;
     text-align:center;
+   
+}
+
+.MyPage {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color:whitesmoke;
+    width:950px;
+    height:max-content;
+    border-radius:5%;
+    padding:40px;
+    position:relative;
+    left:210px;
+}
+
+.MyPageInfo {
+    position: relative;
+    top: 40px;
+}
+
+.UserList {
+    display: inline-flex;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: max-content;
+    border-radius: 5%;
+    background-color:white;
+    margin:10px;
+}
+
+.buttonFriend{
+    margin:10px;
+    background-color:deepskyblue;
+    border:0;
+    border-radius:5%;
+}
+
+.formFriend label{
+    padding:0px 0px 0px 30px;
+}
+
+.friendImg{
+    width:50px;
+    height:50px;
+    margin-right:10px;
+}
+.friendList{
+    display:inline-flex;
+    text-align:center;
+}
+.friendList button{
+    position:fixed;
+    right:450px;
 }

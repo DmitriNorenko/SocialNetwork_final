@@ -8,6 +8,7 @@ using SocialNetwork_final.Models;
 using SocialNetwork_final.ViewModels.Account;
 using SocialNetwork_final.ViewModels;
 using System;
+using SocialNetwork_final.DB.Repository;
 
 namespace SocialNetwork_final.Controllers
 {
@@ -16,12 +17,14 @@ namespace SocialNetwork_final.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IFriendsRepository _friendsRepository;
 
-        public AccountManagerController(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountManagerController(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, IFriendsRepository friendsRepository)
         {
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
+            _friendsRepository = friendsRepository;
         }
 
         [Route("Login")]
@@ -103,7 +106,23 @@ namespace SocialNetwork_final.Controllers
                 return View("Logout", model);
             }
         }
+        [HttpPost]
+        public IActionResult AddFriend(string friendEmail)
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+            var friend = _userManager.FindByEmailAsync(friendEmail).Result;
+            _friendsRepository.AddFriend(user, friend);
+            return RedirectToAction("MyPage", "AccountManager");
+        }
 
+        [HttpPost]
+        public IActionResult DeleteFriend(string friendEmail)
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+            var friend = _userManager.FindByEmailAsync(friendEmail).Result;
+            _friendsRepository.DeleteFriend(user, friend);
+            return RedirectToAction("MyPage", "AccountManager");
+        }
         [Route("UserList")]
         [HttpPost]
         public IActionResult UserList(string search)

@@ -11,9 +11,15 @@ namespace SocialNetwork_final.DB
 {
     public class SocialNetworkContext : IdentityDbContext<User>
     {
+         public DbSet<Friend> UserFriends { get; set; }
         public SocialNetworkContext(DbContextOptions<SocialNetworkContext> options) : base(options) 
         {
             Database.EnsureCreated();
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Friend>().ToTable("UserFriends");
         }
     }
 }

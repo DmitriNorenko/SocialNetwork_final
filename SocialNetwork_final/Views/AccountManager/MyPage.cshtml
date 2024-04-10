@@ -1,8 +1,10 @@
-﻿@model SocialNetwork_final.ViewModels.Account.UserViewModel;
+﻿@using SocialNetwork_final.DB.Repository
+@model SocialNetwork_final.ViewModels.Account.UserViewModel;
+@inject IFriendsRepository FrRepository;
 @{
     ViewData["Title"] = "Моя страница";
 }
-<div class="side">
+<div class="side MyPage">
     <div class="MaxContent">
         <img class="MyPageImg" src="@Model.user.Image" />
         <div>
@@ -11,13 +13,25 @@
             </form>
         </div>
     </div>
-    <div>
+    <div class="MyPageInfo">
         <h3>@Model.user.GetFullName()</h3><hr />
         <p>Статус: @Model.user.Status</p>
-        <p>Дата рождения: @Model.user.BirthDate.Date</p>
+        <p>Дата рождения: @Model.user.BirthDate.Day.@Model.user.BirthDate.Month.@Model.user.BirthDate.Year</p>
         <p>О себе: @Model.user.About</p>
         <p>Email: @Model.user.Email </p><hr /><hr />
-         
+
         <p>Список друзей</p><hr />
+        @foreach (var friend in FrRepository.GetAllFriends(Model.user))
+        {
+            <div class="friendList">
+                <img class="friendImg" src="@friend.Image" />
+                <p>@friend.GetFullName()</p>
+                <form  asp-controller="AccountManager" asp-action="DeleteFriend" method="post">
+                    <input style="display:none" type="text" value="@friend.Email" name="friendEmail" />
+                    <button class="buttonFriend" type="submit">Удалить из друзей</button>
+                </form>
+            </div>
+            <br />
+        }
     </div>
 </div>

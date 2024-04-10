@@ -29,6 +29,8 @@ namespace SocialNetwork_final
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SocialNetworkContext>(option => option.UseSqlServer(connection), ServiceLifetime.Singleton);
+            services.AddTransient<IFriendsRepository, FriendsRepository>();
+
             services.AddIdentity<User,IdentityRole>(opts =>
             {
                 opts.Password.RequiredLength = 5;
