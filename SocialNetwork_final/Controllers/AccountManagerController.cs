@@ -8,7 +8,9 @@ using SocialNetwork_final.Models;
 using SocialNetwork_final.ViewModels.Account;
 using SocialNetwork_final.ViewModels;
 using System;
-using SocialNetwork_final.DB.Repository;
+using SocialNetwork_final.DB.Repository.Friends;
+using SocialNetwork_final.DB.Repository.Messages;
+using SocialNetwork_final.ViewModels.Messages;
 
 namespace SocialNetwork_final.Controllers
 {
@@ -18,13 +20,22 @@ namespace SocialNetwork_final.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IFriendsRepository _friendsRepository;
+        private readonly IMessageRepository _messageRepository;
 
-        public AccountManagerController(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, IFriendsRepository friendsRepository)
+
+        public AccountManagerController(
+            IMapper mapper,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
+            IFriendsRepository friendsRepository,
+            IMessageRepository messageRepository
+            )
         {
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
             _friendsRepository = friendsRepository;
+            _messageRepository = messageRepository;
         }
 
         [Route("Login")]
@@ -127,11 +138,69 @@ namespace SocialNetwork_final.Controllers
         [HttpPost]
         public IActionResult UserList(string search)
         {
-            var model = new SearchViewModel
+            var model = new SearchViewModel();
+            if (string.IsNullOrEmpty(search))
             {
-                UserList = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList()
+                model.UserList = _userManager.Users.AsEnumerable().ToList();
+            }
+            else
+            {
+                model.UserList = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList();
+            }
+            return View("UserList", model);
+        }
+
+        private async Task<ChatViewModel> GenerateChat(string id)
+        {
+            var currentuser = User;
+            var result = await _userManager.GetUserAsync(currentuser);
+            var friend = await _userManager.FindByIdAsync(id);
+            ;
+            var mess = _messageRepository.GetMessages(result, friend);
+
+            var model = new ChatViewModel()
+            {
+                You = result,
+                ToWhom = friend,
+                History = mess.OrderBy(x => x.Id).ToList(),
             };
-            return View("UserList",model);
+            return model;
+        }
+
+        [Route("Chat")]
+        [HttpGet]
+        public async Task<IActionResult> Chat(string id)
+        {
+            var model = await GenerateChat(id);
+            return View("Chat", model);
+        }
+
+        [Route("NewMessage")]
+        [HttpPost]
+        public async Task<IActionResult> NewMessage(string id, ChatViewModel chat)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var item = new Message()
+            {
+                SenderId = result.Id,
+                Sender = result,
+                RecipientId = result.Id,
+                Recipient = friend,
+                Text = chat.NewMessage.Text,
+            };
+            _messageRepository.Create(item);
+            var mess = _messageRepository.GetMessages(result, friend);
+            var model = new ChatViewModel()
+            {
+                You = result,
+                ToWhom = friend,
+                History = mess.OrderBy(x => x.Id).ToList(),
+            };
+            return View("Chat", model);
         }
 
         [Route("Logout")]

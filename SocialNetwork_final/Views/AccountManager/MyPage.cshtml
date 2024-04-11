@@ -1,4 +1,4 @@
-﻿@using SocialNetwork_final.DB.Repository
+﻿@using SocialNetwork_final.DB.Repository.Friends
 @model SocialNetwork_final.ViewModels.Account.UserViewModel;
 @inject IFriendsRepository FrRepository;
 @{
@@ -26,9 +26,13 @@
             <div class="friendList">
                 <img class="friendImg" src="@friend.Image" />
                 <p>@friend.GetFullName()</p>
-                <form  asp-controller="AccountManager" asp-action="DeleteFriend" method="post">
+                <form asp-controller="AccountManager" asp-action="Chat" method="get">
+                    <input style="display:none" type="text" value="@friend.Id" name="id" />
+                    <button class="buttonFriend1" type="submit">Чат</button>
+                </form>
+                <form asp-controller="AccountManager" asp-action="DeleteFriend" method="post">
                     <input style="display:none" type="text" value="@friend.Email" name="friendEmail" />
-                    <button class="buttonFriend" type="submit">Удалить из друзей</button>
+                    <button class="buttonFriend2" type="submit">Удалить из друзей</button>
                 </form>
             </div>
             <br />

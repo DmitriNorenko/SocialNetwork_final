@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialNetwork_final.DB.Repository
+namespace SocialNetwork_final.DB.Repository.Friends
 {
     public class FriendsRepository : IFriendsRepository
     {

@@ -1,8 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SocialNetwork_final.Contract.Model.Request;
-using SocialNetwork_final.Contract.Validator;
 using SocialNetwork_final.DB.Model;
 using SocialNetwork_final.DB.Repository;
 using SocialNetwork_final.Models;

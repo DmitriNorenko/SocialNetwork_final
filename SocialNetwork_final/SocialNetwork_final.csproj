@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SocialNetwork_final.Contract\SocialNetwork_final.Contract.csproj" />
     <ProjectReference Include="..\SocialNetwork_final.DB\SocialNetwork_final.DB.csproj" />
   </ItemGroup>
 

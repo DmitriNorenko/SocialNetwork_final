@@ -3,12 +3,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
-using SocialNetwork_final.Contract.Model;
-using SocialNetwork_final.Contract.Validator;
 using SocialNetwork_final.Controllers;
 using SocialNetwork_final.DB;
 using SocialNetwork_final.DB.Model;
-using SocialNetwork_final.DB.Repository;
+using SocialNetwork_final.DB.Repository.Friends;
+using SocialNetwork_final.DB.Repository.Messages;
 using System.Reflection;
 
 namespace SocialNetwork_final
@@ -30,8 +29,9 @@ namespace SocialNetwork_final
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SocialNetworkContext>(option => option.UseSqlServer(connection), ServiceLifetime.Singleton);
             services.AddTransient<IFriendsRepository, FriendsRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
 
-            services.AddIdentity<User,IdentityRole>(opts =>
+            services.AddIdentity<User, IdentityRole>(opts =>
             {
                 opts.Password.RequiredLength = 5;
                 opts.Password.RequireNonAlphanumeric = false;
@@ -39,8 +39,6 @@ namespace SocialNetwork_final
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<SocialNetworkContext>();
-
-            services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>());
 
             services.AddControllersWithViews();
         }
