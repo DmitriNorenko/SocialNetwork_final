@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Поиск";
+}
+<div id="searchInput">
+    <form asp-area="" asp-controller="AccountManager" asp-action="UserList">
+        <i></i>
+        <input type="text" placeholder="Поиск" name="search" />
+        <button type="submit">Поиск</button>
+    </form>
+</div>

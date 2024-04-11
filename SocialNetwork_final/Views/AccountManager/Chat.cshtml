@@ -1,0 +1,26 @@
+﻿@model SocialNetwork_final.ViewModels.Messages.ChatViewModel
+@{
+    ViewData["Title"] = "Чат";
+}
+<meta http-equiv="refresh" content="30">
+
+<div class="chatPosition">
+    <div class="background-white chat">
+        <div>
+            @foreach (var message in Model.History)
+            {
+                <span id="chatSpan">@message.Sender.FirstName: @message.Text</span>
+                <br />
+            }
+        </div>
+        <div>
+            <form asp-area="" asp-controller="AccountManager" asp-action="NewMessage" method="post">
+                <label asp-for="@Model.NewMessage.Text">
+                    <input id="ChatInput" asp-for="@Model.NewMessage.Text" type="text" />
+                    <input style="display:none" name="id" value="@Model.ToWhom.Id" />
+                </label>
+                <button class="buttonForChat" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>

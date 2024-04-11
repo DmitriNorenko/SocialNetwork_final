@@ -1,0 +1,62 @@
+﻿@model SocialNetwork_final.ViewModels.Account.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+
+<form class="frmReg2" method="post" asp-controller="Register" asp-action="Register">
+    <h2>Регистрация нового пользователя</h2>
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="FirstName"></label><br />
+        <input asp-for="FirstName" placeholder="Иван" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label><br />
+        <input asp-for="LastName" placeholder="Иванов" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label asp-for="Login"></label><br />
+        <input asp-for="Login" placeholder="Ivan2931" />
+        <span asp-validation-for="Login"></span>
+    </div>
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" placeholder="ivan@gmail.com" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Date"></label><br />
+        <input asp-for="Date" placeholder="07" />
+        <span asp-validation-for="Date"></span>
+    </div>
+    <div>
+        <label asp-for="Month"></label><br />
+        <input asp-for="Month" placeholder="04" />
+        <span asp-validation-for="Month"></span>
+    </div>
+    <div>
+        <label asp-for="Year"></label><br />
+        <input asp-for="Year" placeholder="1987" />
+        <span asp-validation-for="Year"></span>
+    </div>
+    <div>
+        <label asp-for="PasswordReg"></label><br />
+        <input asp-for="PasswordReg" placeholder="Gfrers343!" />
+        <span asp-validation-for="PasswordReg"></span>
+    </div>
+    <div>
+        <label asp-for="PasswordConfirm"></label><br />
+        <input asp-for="PasswordConfirm" placeholder="Gfrers343!" />
+        <span asp-validation-for="PasswordConfirm"></span>
+    </div>
+    <div id="buttonReg">
+        <input id="buttonFormRegister" type="submit" value="Регистрация" />
+    </div>
+</form>

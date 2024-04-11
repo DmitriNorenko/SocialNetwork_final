@@ -1,0 +1,50 @@
+﻿@using SocialNetwork_final.ViewModels
+@model SocialNetwork_final.ViewModels.Account.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<form class="frmReg" method="get" asp-controller="Register" asp-action="RegisterPart2">
+    <h2>Регистрация </h2>
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="FirstName"></label><br />
+        <input id="inputStyle" asp-for="FirstName" placeholder="Иван" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label><br />
+        <input id="inputStyle" asp-for="LastName" placeholder="Иванов" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div class="text-color-gray text-size_12">Дата рождения</div>
+    <div id="DateOfBirth">
+        <select id="ddlDay" asp-for="Date" class="form-control date_control selectValue">
+            <option value="">Date</option>
+        </select>
+        <span asp-validation-for="Date" class="text-danger"></span>
+
+        <select id="ddlMonth" asp-for="Month" class="form-control date_control selectValue"
+                asp-items="Html.GetEnumSelectList<Months>()" onchange="PopulateDays()">
+            <option value="">Month</option>
+        </select>
+        <span asp-validation-for="Month" class="text-danger"></span>
+
+        <select id="ddlYear" asp-for="Year" class="form-control date_control selectValue"
+                asp-items="Enumerable.Range(DateTime.Now.AddYears(-100).Year,
+        DateTime.Now.AddYears(-14).Year - DateTime.Now.AddYears(-100).Year).Reverse()
+        .Select(x=> new SelectListItem(x.ToString(),x.ToString()))" onchange="PopulateDays()">
+            <option value="">Year</option>
+        </select>
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+    <div>
+        <input id="buttonFormRegister" type="submit" value="Регистрация"  />
+    </div>
+</form>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
